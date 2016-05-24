@@ -55,4 +55,4 @@ sudo /etc/init.d/nginx restart
 
 echo "startin gunicorn ..."
 cd ~/web
-gunicorn hello:application --bind 0.0.0.0:80
+sudo gunicorn hello:application --bind 0.0.0.0:8080
