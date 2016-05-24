@@ -48,6 +48,7 @@ then
 	echo "create link to test.conf"
 	sudo ln -s ~/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
 fi
+sudo rm /etc/nginx/sites-enabled/default
 
 echo "starting nginx ..."
 sudo /etc/init.d/nginx restart
