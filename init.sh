@@ -52,3 +52,7 @@ sudo rm /etc/nginx/sites-enabled/default
 
 echo "starting nginx ..."
 sudo /etc/init.d/nginx restart
+
+echo "startin gunicorn ..."
+cd ~/web
+gunicorn hello:application --bind 0.0.0.0:80
