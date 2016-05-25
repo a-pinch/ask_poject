@@ -1,3 +1,4 @@
 def application(env, start_response):
-	start_resonse('200 OK', [('Content-Type', 'text/html')])
-	return ["hello!"]
+	d = parse_qs(env['QUERY_STRING']
+	start_response('200 OK', [('Content-Type', 'text/plain')])
+	return [srr(d)]
