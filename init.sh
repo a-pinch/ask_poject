@@ -55,5 +55,5 @@ sudo /etc/init.d/nginx restart
 
 echo "startin gunicorn ..."
 cd ~/web
-gunicorn -c /home/box/web/etc/hello:application --daemon
+gunicorn -c /home/box/web/etc/hello.py hello:application --daemon
 gunicorn -c /home/box/web/etc/django.py wsgi --daemon
