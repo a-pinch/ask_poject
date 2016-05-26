@@ -54,5 +54,8 @@ echo "starting nginx ..."
 sudo /etc/init.d/nginx restart
 
 echo "startin gunicorn ..."
-cd ~/web
-sudo gunicorn hello:application --bind 0.0.0.0:8080
+#cd ~/web
+#sudo gunicorn hello:application --bind 0.0.0.0:8080
+
+sudo ln -s ~/web/etc/gunicorn.conf /etc/gunicorn.d/test
+sudo /etc/init.d/gunicorn restart
