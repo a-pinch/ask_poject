@@ -59,3 +59,5 @@ echo "startin gunicorn ..."
 
 sudo ln -s ~/web/etc/gunicorn.conf /etc/gunicorn.d/test
 sudo /etc/init.d/gunicorn restart
+
+gunicorn -c /home/box/web/etc/django.py wsgi --daemon
