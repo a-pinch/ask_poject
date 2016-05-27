@@ -8,6 +8,12 @@ fi
 cd ~/web
 echo "cd ~/web"
 
+if [[ ! -e log ]]
+then
+	mkdir log
+	echo "log dir created"
+fi
+
 if [[ ! -e etc ]]
 then
 	mkdir etc
@@ -55,5 +61,5 @@ sudo /etc/init.d/nginx restart
 
 echo "startin gunicorn ..."
 cd ~/web
-gunicorn -c /home/box/web/etc/hello.py hello:application --daemon
-gunicorn -c /home/box/web/etc/django.py wsgi --daemon
+gunicorn -c /home/box/web/etc/hello.py hello:application --daemon -p /home/box/web/log/hello.pid
+gunicorn -c /home/box/web/etc/django.py wsgi --daemon -p /home/box/web/log/gjango.pid
