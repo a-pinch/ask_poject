@@ -1,3 +1,6 @@
-pythonpath = '/home/box/web/ask/ask'
+pythonpath = '/home/box/web/ask'
+django_settings = 'ask.settings22'
 bind = "0.0.0.0:8000"
-log_file = "/home/box/web/log/gunicorn.err"
+errorlog = "/home/box/web/log/gunicorn.err"
+accesslog = "/home/box/web/log/gunicorn.log"
+
