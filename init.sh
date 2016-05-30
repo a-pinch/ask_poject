@@ -69,3 +69,11 @@ sudo /etc/init.d/mysql start
 
 echo "create db askbase ..."
 mysql -u root -e "create database askbase; GRANT ALL PRIVILEGES ON askbase.* TO admin@localhost IDENTIFIED BY '1234'"
+
+echo "syncdb .."
+python ask/manage.py syncdb --noinput
+
+echo "create django superuser ..."
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', '1234')" | python ask/manage.py shell
+
+
