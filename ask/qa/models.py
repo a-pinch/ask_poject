@@ -12,7 +12,7 @@ class Question(models.Model):
 	likes = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
 
-class Answer(models.Model)
+class Answer(models.Model):
 	text = models.TextField()
 	added_at = models.DateTimeField()
 	question = models.ForeignKey(Question, on_delete = models.CASCADE)
