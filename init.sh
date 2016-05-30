@@ -74,7 +74,7 @@ echo "syncdb .."
 python ask/manage.py syncdb --noinput
 
 echo "create django superuser ..."
-echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', '1234')" | python ask/manage.py shell
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@localhost', '1234')" | python ask/manage.py shell
 
 echo "git config ..."
 git config user.email "shmat.co@mail.ru"
