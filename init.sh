@@ -63,3 +63,9 @@ echo "startin gunicorn ..."
 cd ~/web
 gunicorn -c /home/box/web/etc/hello.py hello:application --daemon -p /home/box/web/log/hello.pid
 gunicorn -c /home/box/web/etc/django.py wsgi --daemon -p /home/box/web/log/gjango.pid
+
+echo "starting mysql ..."
+sudo /etc/init.d/mysql start
+
+echo "create db askbase ..."
+mysql -u root -e "create database askbase; GRANT ALL PRIVILEGES ON askbase.* TO admin@localhost IDENTIFIED BY '1234'"
