@@ -7,8 +7,9 @@ os.environ['DJANGO_SETTINGS_MODULE']  = "ask.settings"
 
 def testQuestion(self):
 #	question = Question.object.create()
+	assert False, "Test"
 	user,_ = User.objects.get_or_create(username='x', password = 'y')
 	question = Question(title = 'qwe', text = 'qwe', author = user)
 	question.save()
-	assertIsNotNone(question.id, 'question id is None')
+	assertIsNone(question.id, 'question id is None')
 
