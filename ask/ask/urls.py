@@ -4,10 +4,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'qa.views.test'),
+    url(r'^$', 'qa.views.main', name='main'),
     url(r'^login/$', 'qa.views.test'),
     url(r'^signup/$', 'qa.views.test'),
-    url(r'^question/(\d+)$', 'qa.views.test'),
+    url(r'^question/(\d+)$', 'qa.views.quest', name='quest')
     url(r'^ask/.*$', 'qa.views.test'),
     url(r'^popular/$', 'qa.views.test'),
     url(r'^new/$', 'qa.views.test'),

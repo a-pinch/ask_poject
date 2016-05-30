@@ -24,6 +24,10 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = (
+    'qa/templates',
+)
+
 ALLOWED_HOSTS = []
 
 

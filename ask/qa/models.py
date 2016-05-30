@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -17,6 +18,12 @@ class Question(models.Model):
 	rating = models.IntegerField(default=0)
 	author = models.ForeignKey(User)
 	likes = models.ManyToManyField(User, related_name='likes_set')
+
+
+	def get_url(self):
+	    return reverse('quest', kwargs={'id':self.id})
+	def __unicode__(self):
+	    return self.title
 
 
 class Answer(models.Model):

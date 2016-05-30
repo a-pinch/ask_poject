@@ -1,0 +1,13 @@
+<nav><ul class="pagination">
+{% for p in paginator.page_range %}
+   <li>
+	<a href="{{ paginator.baseurl }}{{ p.number }}">
+	{{ p.number }}</a>
+    </li>
+{% endfor %}
+</ul></nav>
+
+{% for q in quests %}
+    <a href="{{ q.get_url }}">{{q}}</a>
+{% endfor %}
+<input type='hidden' value='{{ page }}'/>
