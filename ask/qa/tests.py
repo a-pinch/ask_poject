@@ -1,7 +1,8 @@
 from django.test import TestCase
 from qa import Question
+from 
 
-# Create your tests here.
-
+ngo.contrib.auth.model 
 def testQuestion(self):
-	question = Question.object.create()
+#	question = Question.object.create()
+	user,_ = 
