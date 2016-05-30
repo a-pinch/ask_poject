@@ -1,11 +1,13 @@
 from django.test import TestCase
-from ask.qa import Question
-from django.contrib.auth import User 
+from django.contrib.auth.models import User 
 
-ngo.contrib.auth.model 
+import sys, os
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+os.environ['DJANGO_SETTINGS_MODULE']  = "ask.settings"
+
 def testQuestion(self):
 #	question = Question.object.create()
-	user,_ = User.object = get_or_create(username='x', password = 'y')
+	user,_ = User.objects.get_or_create(username='x', password = 'y')
 	question = Question(title = 'qwe', text = 'qwe', author = user)
 	question.save()
 	assertIsNotNone(question.id, 'question id is None')
