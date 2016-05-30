@@ -12,7 +12,10 @@ class TestQuestion(TestCase):
 #	question = Question.object.create()
 #       assert False, "Test"
         user,_ = User.objects.get_or_create(username='x', password = 'y')
-        question = Question(title = 'qwe', text = 'qwe', author = user)
-        question.save()
+	try:
+            question = Question(title = 'qwe', text = 'qwe', author = user)
+            question.save()
+	except:
+	    assert False, "Failed to create question model"
         assertIsNone(question.id, 'question id is None')
 
