@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.views.decorators.http import require_Get
 from django.core.paginator import Paginator
 from qa.models import Question
 from qa.forms import AskForm
@@ -32,13 +33,15 @@ def popular(request):
         'paginator': paginator, 'page': page,
     })
 
+@require_GET
 def question(request, id):
     try:
 	question = Question.objects.get(pk=id)
     except Question.DoesNotExist:
         raise Http404	 
+    form = AskForm()
     return render(request, 'question.html', {
-        'quest': question
+        'quest': question, 'form': form
     })
 
 def ask(request)
