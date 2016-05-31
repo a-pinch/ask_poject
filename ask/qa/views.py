@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.core.paginator import Paginator
 from qa.models import Question
 
@@ -19,8 +19,23 @@ def main(request):
         'paginator': paginator, 'page': page,
     })
 
+def popular(request):
+    questions = Question.order_by('-rating')
+    limit = request.GET.get('limit', 10)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(questions, limit)
+    paginator.baseurl = '/popular?page='
+    page = paginator.page(page)
+    return render(request, 'fresh_questions.html', {
+	'quests': page.object_list,
+        'paginator': paginator, 'page': page,
+    })
+
 def question(request, id):
+    try:
 	question = Question.objects.get(pk=id)
-	return render(request, 'question.html', {
-	    'quest': question
-	})
+    except Question.DoesNotExist:
+        raise Http404	 
+    return render(request, 'question.html', {
+        'quest': question
+    })
