@@ -1,8 +1,8 @@
 <nav><ul class="pagination">
 {% for p in paginator.page_range %}
    <li>
-	<a href="{{ paginator.baseurl }}{{ p.number }}">
-	{{ p.number }}</a>
+	<a href="{{ paginator.baseurl }}{{ p }}">
+	{{ p }}</a>
     </li>
 {% endfor %}
 </ul></nav>
@@ -10,4 +10,4 @@
 {% for q in quests %}
     <a href="{{ q.get_url }}">{{q}}</a>
 {% endfor %}
-<input type='hidden' value='{{ page }}'/>
+<input type='hidden' name="page" value='{{ page }}'/>
