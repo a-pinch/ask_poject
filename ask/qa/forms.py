@@ -4,7 +4,7 @@ from qa.models import Question, Answer
 class AskForm(forms.Form):
     title = forms.CharField(max_length = 255)
     text = forms.CharField(widget = forms.Textarea)
-    def __init__(self, user, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
 	super(AskForm, self).__init__(*args, **kwargs)
     def clean_title(self):
 	title = self.cleaned_data['title']
@@ -21,8 +21,8 @@ class AskForm(forms.Form):
 
 class AnswerForm(forms.Form):
     text = forms.CharField(widget = forms.Textarea)
-    question = forms.CharField(widget = forms.HeddenInput())
-    def __init__(self, user, *args, **kwargs):
+    question = forms.IntegerField(widget = forms.HiddenInput())
+    def __init__(self, *args, **kwargs):
 	super(AnswerForm, self).__init__(*args, **kwargs)
     def clean_text(self):
 	text =self.cleaned_data['text']
