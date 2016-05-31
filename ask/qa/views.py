@@ -20,7 +20,7 @@ def main(request):
     })
 
 def popular(request):
-    questions = Question.order_by('-rating')
+    questions = Question.objects.order_by('-rating')
     limit = request.GET.get('limit', 10)
     page = request.GET.get('page', 1)
     paginator = Paginator(questions, limit)
