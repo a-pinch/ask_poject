@@ -10,6 +10,6 @@ urlpatterns = patterns('',
     url(r'^question/(\d+)/$', 'qa.views.question', name='quest'),
     url(r'^ask/.*$', 'qa.views.ask'),
     url(r'^popular/$', 'qa.views.popular', name='popular'),
-    url(r'^new/$', 'qa.views.test'),
+    url(r'^/answer/$', 'qa.views.answer'),
 
 )
