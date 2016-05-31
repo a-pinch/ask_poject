@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.views.decorators.http import require_Get, require_Post
+from django.views.decorators.http import require_GET, require_POST
 from django.core.paginator import Paginator
 from qa.models import Question
 from qa.forms import AskForm, AnswerForm
@@ -44,8 +44,8 @@ def question(request, id):
         'quest': question, 'form': form
     })
 
-def ask(request)
-    if request.method == "POST"
+def ask(request):
+    if request.method == "POST":
 	form = AskForm(request.POST)
 	if form.is_valid():
 	    ask = form.save()
@@ -54,9 +54,10 @@ def ask(request)
     else:
 	form = AskForm()
     return render(request,'add_question.html', {
-	'form': from
+	'form': form
     })
 
+@require_POST
 def answer(request):
     form = AnswerForm(request.POST)
     if form.is_valid():
