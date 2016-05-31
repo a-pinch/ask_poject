@@ -21,7 +21,7 @@ class Question(models.Model):
 
 
 	def get_url(self):
-	    return reverse('quest', kwargs={'id':self.id})
+	    return reverse('quest', args=[self.id])
 	def __unicode__(self):
 	    return self.title
 
