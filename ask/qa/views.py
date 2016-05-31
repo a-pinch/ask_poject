@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
 from qa.models import Question
 from qa.forms import AskForm, AnswerForm
@@ -44,11 +45,12 @@ def question(request, id):
         'quest': question, 'form': form
     })
 
+@csrf_exempt
 def ask(request):
     if request.method == "POST":
 	form = AskForm(request.POST)
 	if form.is_valid():
-	    ask = form.save()
+            ask = form.save()
 	    url = ask.get_url()
 	    return HttpResponseRedirect(url)
     else:

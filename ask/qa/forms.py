@@ -15,7 +15,8 @@ class AskForm(forms.Form):
 	if not text:
 	    raise form.ValidationError("Please enter text")
     def save(self):
-	ask = Question(**self.cleaned_data)
+#	ask = Question(**self.cleaned_data)
+	ask = Question()
 	ask.save()
 	return ask
 
@@ -30,4 +31,5 @@ class AnswerForm(forms.Form):
 	    raise form.ValidationError("Please enter text")
     def save(self):
 	answer = Answer(**self.cleaned_data)
-	return answer
+	answer.save()
+	return answer.question
