@@ -1,0 +1,6 @@
+<h1>{{ quest.title}} </h1>
+<p>{{ quest.text }}
+<hr>
+{% for a in quest.answer_set %}
+{{ a }}<br>
+<% endfor %}
