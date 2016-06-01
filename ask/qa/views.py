@@ -96,4 +96,4 @@ def user_login(request):
 	        return HttpResponseRedirect('/')
     else:
 	form = LoginForm()
-    return render(request, 'login.html')
+    return render(request, 'login.html', {'form':form})
