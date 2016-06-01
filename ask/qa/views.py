@@ -72,8 +72,10 @@ def answer(request):
 	'quest': question, 'form': form
     })
 
+@csrf_exempt
 def signup(request):
     if request.method == 'POST':
+	return 'request.body'
 	form = SignupForm(request.POST)
 	if form.is_valid():
 	    user = form.do_signup()
@@ -84,6 +86,7 @@ def signup(request):
 	form = SignupForm()
     return render(request, 'signup.html', {'form': form})
 
+@csrf_exempt
 def login(request):
     if request.method == 'POST':
 	form = LoginForm(request.POST)
