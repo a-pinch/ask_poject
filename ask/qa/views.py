@@ -4,8 +4,9 @@ from django.views.decorators.http import require_GET, require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from qa.models import Question
-from qa.forms import AskForm, AnswerForm
+from qa.forms import AskForm, AnswerForm, SignupForm, LoginForm
 
 # Create your views here.
 def test(request, *args, **kwargs):
@@ -71,12 +72,26 @@ def answer(request):
 	'quest': question, 'form': form
     })
 
-def signin(request):
+def signup(request):
     if request.method == 'POST':
 	form = SignupForm(request.POST)
 	if form.is_valid():
-	    user = User.objects.create_user(form.cleaned_data['username'], 
-				   request.cleaned_data.get['email'],
-				   request.cleaned_data.get['password'])
- 	    return HttpResponseRedirect('/')
-    return render(request, 'signin.html', {'form': form})
+	    user = form.do_signup()
+	    if user:
+ 	        login(request, user)
+ 	        return HttpResponseRedirect('/')
+    else:
+	form = SignupForm()
+    return render(request, 'signup.html', {'form': form})
+
+def login(request):
+    if request.method == 'POST':
+	form = LoginForm(request.POST)
+	if form.is_valid():
+	    user = form.do_login()
+	    if user:
+	        login(request, user)
+	        return HttpResponseRedirect('/')
+    else:
+	form = LoginForm()
+    return render(request, 'login.html')
