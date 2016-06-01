@@ -75,7 +75,6 @@ def answer(request):
 @csrf_exempt
 def signup(request):
     if request.method == 'POST':
-	return 'request.body'
 	form = SignupForm(request.POST)
 	if form.is_valid():
 	    user = form.do_signup()

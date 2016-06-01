@@ -38,14 +38,14 @@ class AnswerForm(forms.Form):
 
 class SignupForm(forms.Form):
     username = forms.CharField()
-    email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput())
+    email = forms.EmailField()
     def do_signup(self):
-	return User.objects.create_user(self.cleaned_data.username, 
-		self.cleaned_data.email, self.cleaned_data.password)
+	return User.objects.create_user(self.cleaned_data['username'], 
+		self.cleaned_data['email'], self.cleaned_data['password'])
 
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())
     def do_login(self):
-	return  authenticate(self.cleaned_data.username, self.cleaned_data.password)
+	return  authenticate(self.cleaned_data['username'], self.cleaned_data['password'])
