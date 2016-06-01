@@ -19,6 +19,10 @@ class AskForm(forms.Form):
 	    raise form.ValidationError("Please enter text")
 	return text
     def save(self):
+	try:
+	    self.cleaned_data['author'] = User.objects.get(username=self._user) 
+	except User.DoesNotExist:
+	    self.cleaned_data['author_id'] = 1
 	return Question.objects.create(**self.cleaned_data)
 
 class AnswerForm(forms.Form):

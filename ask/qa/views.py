@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views.decorators.http import require_GET, require_POST
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -47,11 +48,12 @@ def question(request, id):
     })
 
 @csrf_exempt
+#@login_required
 def ask(request):
     if request.method == "POST":
 	form = AskForm(request.POST)
 	if form.is_valid():
-	    form.author = request.user
+	    form._user = request.user
             ask = form.save()
 	    url = ask.get_url()
 	    return HttpResponseRedirect(url)
@@ -62,10 +64,11 @@ def ask(request):
     })
 
 @require_POST
+#@login_required
 def answer(request):
     form = AnswerForm(request.POST)
     if form.is_valid():
-	form.author = request.user
+	form._user = request.user
 	question = form.save()
 	url = question.get_url()
 	return HttpResponseRedirect(url)
