@@ -41,8 +41,9 @@ class SignupForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
     email = forms.EmailField()
     def do_signup(self):
-	return User.objects.create_user(self.cleaned_data['username'], 
+	User.objects.create_user(self.cleaned_data['username'], 
 		self.cleaned_data['email'], self.cleaned_data['password'])
+	return  authenticate(self.cleaned_data['username'], self.cleaned_data['password'])
 
 class LoginForm(forms.Form):
     username = forms.CharField()

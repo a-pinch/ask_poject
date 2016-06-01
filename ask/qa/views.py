@@ -73,20 +73,20 @@ def answer(request):
     })
 
 @csrf_exempt
-def signup(request):
+def user_signup(request):
     if request.method == 'POST':
 	form = SignupForm(request.POST)
 	if form.is_valid():
 	    user = form.do_signup()
-	    if user:
- 	        login(request, user)
+	    if user is not None:
+                login(request, user)
  	        return HttpResponseRedirect('/')
     else:
 	form = SignupForm()
     return render(request, 'signup.html', {'form': form})
 
 @csrf_exempt
-def login(request):
+def user_login(request):
     if request.method == 'POST':
 	form = LoginForm(request.POST)
 	if form.is_valid():
