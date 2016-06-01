@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views.decorators.http import require_GET, require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 from qa.models import Question
 from qa.forms import AskForm, AnswerForm
 
@@ -69,3 +70,13 @@ def answer(request):
     return render(request, 'question.html', {
 	'quest': question, 'form': form
     })
+
+def signin(request):
+    if request.method == 'POST':
+	form = SignupForm(request.POST)
+	if form.is_valid():
+	    user = User.objects.create_user(form.cleaned_data['username'], 
+				   request.cleaned_data.get['email'],
+				   request.cleaned_data.get['password'])
+ 	    return HttpResponseRedirect('/')
+    return render(request, 'signin.html', {'form': form})
